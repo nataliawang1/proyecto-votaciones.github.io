@@ -26,19 +26,16 @@
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
 
-      // Guardamos usuarios en localStorage (solo demostración, no seguro para producción)
       const usuarios = JSON.parse(localStorage.getItem('usuarios')) || {};
 
       if (usuarios[email]) {
-        // Usuario ya registrado, verificamos contraseña
         if (usuarios[email].password === password) {
           localStorage.setItem('usuarioActivo', email);
-          window.location.href = 'index.html'; // Redirige a la página de votación
+          window.location.href = 'index.html';
         } else {
           mensaje.textContent = 'Contraseña incorrecta';
         }
       } else {
-        // Registrar nuevo usuario
         usuarios[email] = { password: password, voto: false };
         localStorage.setItem('usuarios', JSON.stringify(usuarios));
         localStorage.setItem('usuarioActivo', email);
