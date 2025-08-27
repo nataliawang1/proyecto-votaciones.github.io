@@ -7,16 +7,25 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <script>
+    const usuarioActivo = localStorage.getItem('usuarioActivo');
+    const usuarios = JSON.parse(localStorage.getItem('usuarios')) || {};
+    if (!usuarioActivo || !usuarios[usuarioActivo]) {
+      window.location.href = 'login.html';
+    }
+  </script>
+
   <div class="container">
+    <p>Bienvenido: <strong id="usuario"></strong> <button id="logout">Cerrar sesión</button></p>
     <img src="img/ACADEMIA STEM.png" id="academia">
-    </div>
     <p class="subtitle">Categoría IOT</p>
     <p class="category">Mejor Proyecto</p>
 
     <div class="voting-container">
       <div class="voting-item">
-        <div class="university-logo itcj"> 
-            <img src="img/UTCJ.png" id="utcj"></div>
+        <div class="university-logo itcj">
+          <img src="img/UTCJ.png" id="utcj">
+        </div>
         <p>IT Chihuahua</p>
         <button id="miBtn1" class="btn">Votar</button>
         <div id="conta1" class="score">0</div>
@@ -24,7 +33,7 @@
 
       <div class="voting-item">
         <div class="university-logo tec">
-              <img src="img/tecnm.jpg" id="tecnm">
+          <img src="img/tecnm.jpg" id="tecnm">
         </div>
         <p>TecNM</p>
         <button id="miBtn2" class="btn">Votar</button>
@@ -33,7 +42,7 @@
 
       <div class="voting-item">
         <div class="university-logo urn">
-             <img src="img/urn.jpg" id="urn">
+          <img src="img/urn.jpg" id="urn">
         </div>
         <p>URN</p>
         <button id="miBtn3" class="btn">Votar</button>
@@ -42,7 +51,7 @@
 
       <div class="voting-item">
         <div class="university-logo uacj">
-              <img src="img/uacj.png" id="uacj">
+          <img src="img/uacj.png" id="uacj">
         </div>
         <p>UACJ</p>
         <button id="miBtn4" class="btn">Votar</button>
@@ -51,7 +60,7 @@
 
       <div class="voting-item">
         <div class="university-logo uach">
-              <img src="img/uach.svg" id="uach">
+          <img src="img/uach.svg" id="uach">
         </div>
         <p>UACH</p>
         <button id="miBtn5" class="btn">Votar</button>
@@ -61,5 +70,12 @@
   </div>
 
   <script src="script.js"></script>
+  <script>
+    document.getElementById('usuario').textContent = usuarioActivo;
+    document.getElementById('logout').addEventListener('click', () => {
+      localStorage.removeItem('usuarioActivo');
+      window.location.href = 'login.html';
+    });
+  </script>
 </body>
 </html>
