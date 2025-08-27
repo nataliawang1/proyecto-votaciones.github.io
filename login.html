@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Torneo Academia STEM</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Iniciar Sesión / Registro</h2>
+    <form id="authForm">
+      <input type="email" id="email" placeholder="Correo electrónico" required />
+      <input type="password" id="password" placeholder="Contraseña" required />
+      <button type="submit">Ingresar</button>
+    </form>
+    <p id="mensaje"></p>
+  </div>
+
+  <script>
+    const form = document.getElementById('authForm');
+    const mensaje = document.getElementById('mensaje');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      // Guardamos usuarios en localStorage (solo demostración, no seguro para producción)
+      const usuarios = JSON.parse(localStorage.getItem('usuarios')) || {};
+
+      if (usuarios[email]) {
+        // Usuario ya registrado, verificamos contraseña
+        if (usuarios[email].password === password) {
+          localStorage.setItem('usuarioActivo', email);
+          window.location.href = 'index.html'; // Redirige a la página de votación
+        } else {
+          mensaje.textContent = 'Contraseña incorrecta';
+        }
+      } else {
+        // Registrar nuevo usuario
+        usuarios[email] = { password: password, voto: false };
+        localStorage.setItem('usuarios', JSON.stringify(usuarios));
+        localStorage.setItem('usuarioActivo', email);
+        window.location.href = 'index.html';
+      }
+    });
+  </script>
+</body>
+</html>
