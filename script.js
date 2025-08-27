@@ -1,4 +1,3 @@
-
 const btn1 = document.getElementById('miBtn1');
 const conta1 = document.getElementById('conta1');
 
@@ -16,37 +15,29 @@ const conta5 = document.getElementById('conta5');
 
 let itcj = 0, tec = 0, urn = 0, uacj = 0, uach = 0;
 
-btn1.addEventListener('click', function() {
-    itcj++;
-    conta1.textContent = itcj;
-    btn1.disabled = true;
-    btn1.textContent = 'Votado';
-});
+const usuarioActivo = localStorage.getItem('usuarioActivo');
+const usuarios = JSON.parse(localStorage.getItem('usuarios')) || {};
+const user = usuarios[usuarioActivo];
 
-btn2.addEventListener('click', function() {
-    tec++;
-    conta2.textContent = tec;
-    btn2.disabled = true;
-    btn2.textContent = 'Votado';
-});
+// Si el usuario ya votó, deshabilitar todos los botones
+if (user && user.voto) {
+  document.querySelectorAll('.btn').forEach(btn => {
+    btn.disabled = true;
+    btn.textContent = 'Votado';
+  });
+}
 
-btn3.addEventListener('click', function() {
-    urn++;
-    conta3.textContent = urn;
-    btn3.disabled = true;
-    btn3.textContent = 'Votado';
-});
+function registrarVoto() {
+  usuarios[usuarioActivo].voto = true;
+  localStorage.setItem('usuarios', JSON.stringify(usuarios));
+  document.querySelectorAll('.btn').forEach(btn => {
+    btn.disabled = true;
+    btn.textContent = 'Votado';
+  });
+}
 
-btn4.addEventListener('click', function() {
-    uacj++;
-    conta4.textContent = uacj;
-    btn4.disabled = true;
-    btn4.textContent = 'Votado';
-});
-
-btn5.addEventListener('click', function() {
-    uach++;
-    conta5.textContent = uach;
-    btn5.disabled = true;
-    btn5.textContent = 'Votado';
-});
+btn1.addEventListener('click', () => { itcj++; conta1.textContent = itcj; registrarVoto(); });
+btn2.addEventListener('click', () => { tec++; conta2.textContent = tec; registrarVoto(); });
+btn3.addEventListener('click', () => { urn++; conta3.textContent = urn; registrarVoto(); });
+btn4.addEventListener('click', () => { uacj++; conta4.textContent = uacj; registrarVoto(); });
+btn5.addEventListener('click', () => { uach++; conta5.textContent = uach; registrarVoto(); });
