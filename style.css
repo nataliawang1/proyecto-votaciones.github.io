@@ -131,19 +131,19 @@ body {
 }
 
 .university-logo.itcj {
-  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/IT_Chihuahua_logo.svg/512px-IT_Chihuahua_logo.svg.png');
+  background-image: url("img/UTCJ.png");
 }
 .university-logo.tec {
-  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/TecNM_logo.svg/512px-TecNM_logo.svg.png');
+  background-image: url('img/tecnm.jpg');
 }
 .university-logo.urn {
-  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Universidad_Rafael_Landesman_logo.png/512px-Universidad_Rafael_Landesman_logo.png');
+  background-image: url('img/urn.jpg');
 }
 .university-logo.uacj {
-  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Logo_UACJ.svg/512px-Logo_UACJ.svg.png');
+  background-image: url('img/uacj.png');
 }
 .university-logo.uach {
-  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Logo_UACH.svg/512px-Logo_UACH.svg.png');
+  background-image: url('img/uach.svg');
 }
 
 .voting-item p {
@@ -179,3 +179,4 @@ body {
   color: #007BFF;
   margin-top: 5px;
 }
+
